@@ -29,6 +29,12 @@ export const authHandle = SvelteKitAuth({
 			clientSecret: GITHUB_SECRET
 		})
 	],
+	session: {
+		strategy: 'database',
+		generateSessionToken: () => {
+			return crypto.randomUUID();
+		}
+	},
 	adapter: PrismaAdapter(prisma)
 });
 
